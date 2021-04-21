@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="firstname">First Name</string>
+    <string name="lastname">Last Name</string>
+    <string name="emailid">Email Address</string>
+    <string name="mobile">Mobile Phone Number</string>
+    <string name="password">Password</string>
+    <string name="username">Username or Email</string>
+    <string name="dob">Date of Birth</string>
+    <string name="confirmpassword">Confirm Password</string>
+</resources>

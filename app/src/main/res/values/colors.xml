@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimary">@color/colorBluePrimary</color>
+    <color name="colorPrimaryDark">@color/colorBlueSecondary</color>
+    <color name="colorAccent">@color/colorBluePrimary</color>
+
+    <color name="colorTransparent">#00000000</color>
+    <color name="colorShadow">#80000000</color>
+
+    <color name="colorWhitePrimary">#fff</color>
+    <color name="colorWhiteSecondary">#F2F2F2</color>
+
+    <color name="colorBlackPrimary">#0C0C0C</color>
+    <color name="colorBlackSecondary">#0C0C0C</color>
+    <color name="colorBlackTertiary">#787878</color>
+
+    <color name="colorGreyPrimary">#F4F5F9</color>
+    <color name="colorGreySecondary">#ECECEC</color>
+    <color name="colorGreyTertiary">#F5F6FB</color>
+    <color name="colorGreyQuaternary">#95969A</color>
+    <color name="colorGreyQuinary">#F5F5F5</color>
+    <color name="colorGreySenary">#CAC8CD</color>
+    <color name="colorWayCoolGreyDenary">#D8D8D8</color>
+
+    <color name="colorBluePrimary">#508BF2</color>
+    <color name="colorBlueSecondary">#5078F2</color>
+    <color name="colorBlueTertiary">#50D7F2</color>
+    <color name="colorBlueQuaternary">#335078F2</color>
+    <color name="colorBlueQuinary">#F3F7FE</color>
+    <color name="colorWayCoolBlue">#2C8CB0</color>
+
+    <color name="colorRedPrimary">#E13440</color>
+    <color name="colorRedSecondary">#1AE13440</color>
+
+    <color name="colorOrangePrimary">#F2BC50</color>
+    <color name="colorOrangeSecondary">#F27950</color>
+    <color name="colorOrangeText">#F2994A</color>
+
+    <color name="colorGreenPrimary">#4D9D5E</color>
+    <color name="colorGreenSecondary">#1A4D9D5E</color>
+    <color name="colorGreenText">#27AE60</color>
+</resources>
