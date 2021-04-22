@@ -8,4 +8,14 @@
     <string name="username">Username or Email</string>
     <string name="dob">Date of Birth</string>
     <string name="confirmpassword">Confirm Password</string>
+
+
+    <string name="error_valid_email_password">Wrong Email or Password</string>
+    <string name="success_valid_email_password">Login Successful</string>
+
+    <string name="register_successfully">Register Successfully!</string>
+    <string name="register_failed">Something wrong happened!</string>
+
+    <string name="update_successfully">Update data successfully!</string>
+    <string name="update_failed">Updating data failed!</string>
 </resources>

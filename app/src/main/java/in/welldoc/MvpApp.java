@@ -18,8 +18,8 @@ package in.welldoc;
 
 import android.app.Application;
 
-import in.welldoc.data.local.DataManager;
-import in.welldoc.data.local.SharedPrefsHelper;
+import in.welldoc.data.DataManager;
+import in.welldoc.data.SharedPrefsHelper;
 
 
 public class MvpApp extends Application {

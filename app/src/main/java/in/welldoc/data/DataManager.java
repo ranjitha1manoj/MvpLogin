@@ -14,14 +14,34 @@
  *    limitations under the License.
  */
 
-package in.welldoc.ui.login;
+package in.welldoc.data;
 
 
-import in.welldoc.ui.base.MvpPresenter;
-import in.welldoc.ui.base.MvpView;
+public class DataManager {
 
-public interface LoginMvpPresenter<V extends LoginMvpView & MvpView> extends MvpPresenter<V> {
+  SharedPrefsHelper mSharedPrefsHelper;
 
-    void startLogin(String emailId);
+    public DataManager(SharedPrefsHelper sharedPrefsHelper) {
+        mSharedPrefsHelper = sharedPrefsHelper;
+    }
 
+    public void clear() {
+        mSharedPrefsHelper.clear();
+    }
+
+    public void saveEmailId(String email) {
+        mSharedPrefsHelper.putEmail(email);
+    }
+
+    public String getEmailId() {
+        return mSharedPrefsHelper.getEmail();
+    }
+
+    public void setLoggedIn() {
+        mSharedPrefsHelper.setLoggedInMode(true);
+    }
+
+    public Boolean getLoggedInMode() {
+        return mSharedPrefsHelper.getLoggedInMode();
+    }
 }

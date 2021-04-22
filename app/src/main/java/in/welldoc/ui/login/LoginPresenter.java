@@ -1,36 +1,59 @@
-/*
- *    Copyright (C) 2017 MINDORKS NEXTGEN PRIVATE LIMITED
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
 package in.welldoc.ui.login;
 
+import android.content.Context;
 
-import in.welldoc.data.local.DataManager;
-import in.welldoc.ui.base.BasePresenter;
+import android.widget.EditText;
 
-public class LoginPresenter<V extends LoginMvpView> extends BasePresenter<V> implements LoginMvpPresenter<V> {
+import androidx.annotation.NonNull;
 
-    public LoginPresenter(DataManager dataManager) {
-        super(dataManager);
+import in.welldoc.R;
+import in.welldoc.data.local.SqliteController;
+
+
+public class LoginPresenter implements LoginContract.Presenter{
+
+    @NonNull
+    LoginContract.View mView;
+    Context mContext;
+    String email, pass;
+    SqliteController sqliteController;
+
+    public LoginPresenter(@NonNull LoginContract.View view, Context context){
+        mView = view;
+        mView.setPresenter(this);
+        mContext = context;
+        sqliteController = new SqliteController(context);
     }
 
     @Override
-    public void startLogin(String emailId) {
-        getDataManager().saveEmailId(emailId);
-        getDataManager().setLoggedIn();
-        getMvpView().openMainActivity();
+    public boolean validateLoginFields(EditText[] fields) {
+        for (EditText field: fields){
+            if (field.getText().toString().isEmpty()){
+                field.setError("Provide the required field!");
+                return false;
+            }
+        }
+        validated(fields);
+        return true;
     }
+
+    private void validated(EditText[] fields){
+        email = fields[0].getText().toString();
+        pass = fields[1].getText().toString();
+        checkCredentials(email, pass);
+    }
+
+
+    private void checkCredentials(String email, String pass){
+       if (sqliteController.checkUserCredentials(email, pass)){
+           mView.showSuccessfulMessage(mContext.getString(R.string.success_valid_email_password));
+           mView.navigateTo(email);
+       }else{
+           mView.showFailedMessage(mContext.getString(R.string.error_valid_email_password));
+       }
+    }
+
+    @Override
+    public void start() {}
 
 }
