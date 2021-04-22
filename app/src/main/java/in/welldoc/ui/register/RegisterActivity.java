@@ -1,73 +1,114 @@
 package in.welldoc.ui.register;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
+
+
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import in.welldoc.MainActivity;
+import com.google.android.material.textfield.TextInputEditText;
+
+import butterknife.BindView;
+import butterknife.OnClick;
 import in.welldoc.R;
-import in.welldoc.data.local.DBHelper;
+import in.welldoc.ui.base.BaseActivity;
 import in.welldoc.ui.home.HomeActivity;
+import in.welldoc.ui.login.LoginActivity;
+import in.welldoc.utils.CommonUtils;
 
-public class RegisterActivity extends AppCompatActivity {
-    private Button registerBtn;
-    private SQLiteOpenHelper openHelper;
-    private SQLiteDatabase db;
-    private EditText FirstName,LastName,Dob,Email,Phone,Password;
+import static androidx.core.util.Preconditions.checkNotNull;
+
+public class RegisterActivity extends BaseActivity implements RegisterContract.View {
+    @BindView(R.id.textInputEditTextfirstName)
+    TextInputEditText reg_first_name;
+    @BindView(R.id.textInputEditTextlastName)
+    TextInputEditText reg_last_name;
+    @BindView(R.id.textInputEditTextDob)
+    TextInputEditText reg_address;
+    @BindView(R.id.textInputEditTextMobile)
+    TextInputEditText reg_phone_num;
+    @BindView(R.id.textInputEditTextEmail)
+    TextInputEditText reg_email_address;
+    @BindView(R.id.textInputEditTextPassword)
+    TextInputEditText reg_password;
+    @BindView(R.id.textLogin)
+    TextView textLogin;
+    @BindView(R.id.btn_continue)
+    Button btn_continue;
+    RegisterContract.Presenter mPresenter;
+    RegisterPresenter registerPresenter;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
-        openHelper = new DBHelper(this);
-
-        registerBtn = findViewById(R.id.btn_logout);
-        FirstName = findViewById(R.id.textInputEditTextfirstName);
-        LastName=findViewById(R.id.textInputEditTextlastName);
-        Dob=findViewById(R.id.textInputEditTextDob);
-        Phone = findViewById(R.id.textInputEditTextMobile);
-        Email = findViewById(R.id.textInputEditTextEmail);
-        Password = findViewById(R.id.textInputEditTextPassword);
-
-        registerBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                db = openHelper.getWritableDatabase();
-                String fname =  FirstName.getText().toString().trim();
-                String lname =  LastName.getText().toString().trim();
-                String dob =  Dob.getText().toString().trim();
-                String fPhone = Phone.getText().toString().trim();
-                String femail =Email.getText().toString().trim();
-                String fPassword = Password.getText().toString().trim();
-                if (fname.isEmpty() ||lname.isEmpty()|| dob.isEmpty() || fPhone.isEmpty()|| femail.isEmpty() || fPassword.isEmpty()) {
-                    Toast.makeText(RegisterActivity.this, "Please fill all the details", Toast.LENGTH_SHORT).show();
-                } else {
-                    insertData(fname,lname,dob,fPhone,femail,fPassword);
-                    Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
-                    Intent iintent = new Intent(getApplicationContext(), HomeActivity.class);
-                    startActivity(iintent);
-                }
-            }
-        });
-
-
+    protected int getLayoutId() {
+        return R.layout.activity_register;
     }
-    public void insertData(String fname,String lname,String dob,String fPhone,String femail,String fPassword){
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(DBHelper.COL_2,fname);
-        contentValues.put(DBHelper.COL_3,lname);
-        contentValues.put(DBHelper.COL_4,dob);
-        contentValues.put(DBHelper.COL_5,fPhone);
-        contentValues.put(DBHelper.COL_6,femail);
-        contentValues.put(DBHelper.COL_7,fPassword);
 
-        long id = db.insert(DBHelper.TABLE_NAME,null,contentValues);
+    @Override
+    public void onPanelClosed(int featureId, @NonNull Menu menu) {
+        super.onPanelClosed(featureId, menu);
     }
+
+    @Override
+    public void showSuccessfulRegister(String message) {
+        showMessageToast(message);
+        navigateTo();
     }
+
+    @Override
+    public void showErrorRegister(String message) {
+        showMessageToast(message);
+    }
+    @Override
+    public void showMessageToast(String message) {
+        super.showMessageToast(message);
+    }
+
+
+    @Override
+    public void navigateTo() {
+       CommonUtils.startActivity(this, LoginActivity.class,
+                Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+    }
+
+    @Override
+    public void setPresenter(RegisterContract.Presenter presenter) {
+        mPresenter = checkNotNull(presenter);
+    }
+    @OnClick({R.id.btn_continue, R.id.textLogin})
+    public void buttonClicked(View v) {
+        switch (v.getId()) {
+            case R.id.textLogin:
+                CommonUtils.startActivity(this,
+                        LoginActivity.class,
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                break;
+            case R.id.btn_continue:
+
+                mPresenter.validateRegisterFields(new TextInputEditText[]{reg_first_name, reg_last_name, reg_address, reg_phone_num,
+                        reg_email_address, reg_password});
+                break;
+        }
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        registerPresenter = new RegisterPresenter(this, this);
+        try {
+            mPresenter.start();
+        }
+       catch (NullPointerException ee)
+       {
+           ee.printStackTrace();
+       }
+    }
+}
