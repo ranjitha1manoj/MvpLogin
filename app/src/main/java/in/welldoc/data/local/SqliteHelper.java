@@ -57,7 +57,7 @@ public class SqliteHelper extends SQLiteOpenHelper{
                 SqliteTable.COL_USER_ID,
                 SqliteTable.COL_USER_FNAME,
                 SqliteTable.COL_USER_LNAME,
-                SqliteTable.COL_USER_ADDRESS,
+                SqliteTable.COL_USER_DOB,
                 SqliteTable.COL_USER_PHONE,
                 SqliteTable.COL_USER_EMAIL,
                 SqliteTable.COL_USER_PASSWORD
@@ -75,7 +75,7 @@ public class SqliteHelper extends SQLiteOpenHelper{
             user.setUser_id(cursor.getInt(0));
             user.setUser_fname(cursor.getString(1));
             user.setUser_lname(cursor.getString(2));
-            user.setUser_address(cursor.getString(3));
+            user.setUser_dob(cursor.getString(3));
             user.setUser_phone(cursor.getString(4));
             user.setUser_email(cursor.getString(5));
             user.setUser_password(cursor.getString(6));

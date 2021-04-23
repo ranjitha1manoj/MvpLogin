@@ -9,9 +9,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * Created by bpn on 12/7/17.
- */
+
 
 public class GetNoticeIntractorImpl implements HomeContract.GetNoticeIntractor {
 

@@ -15,7 +15,7 @@ import in.welldoc.data.local.User;
 public class RegisterPresenter implements RegisterContract.Presenter{
 
     @NonNull RegisterContract.View mView;
-    String fname, lname, addess, phone, email, pass;
+    String fname, lname, dob, phone, email, pass;
     Context context;
     SqliteController sqliteController;
 
@@ -44,12 +44,12 @@ public class RegisterPresenter implements RegisterContract.Presenter{
 
         fname = fields[0].getText().toString();
         lname = fields[1].getText().toString();
-        addess = fields[2].getText().toString();
+        dob = fields[2].getText().toString();
         phone = fields[3].getText().toString();
         email = fields[4].getText().toString();
         pass = fields[5].getText().toString();
 
-        if (savingData(fname, lname, addess, phone, email, pass)){
+        if (savingData(fname, lname, dob, phone, email, pass)){
             mView.showSuccessfulRegister(context.getString(R.string.register_successfully));
         }else{
             mView.showErrorRegister(context.getString(R.string.register_failed));
@@ -57,9 +57,9 @@ public class RegisterPresenter implements RegisterContract.Presenter{
 
     }
 
-    private boolean savingData(String fname, String lname, String address,
+    private boolean savingData(String fname, String lname, String dob,
                                String phone, String email, String pass){
-        User user = new User(fname, lname, address, phone, email, pass);
+        User user = new User(fname, lname, dob, phone, email, pass);
         return sqliteController.saveUserData(user);
     }
 

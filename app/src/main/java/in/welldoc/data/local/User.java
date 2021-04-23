@@ -6,7 +6,16 @@ public class User {
     private int user_id;
     private String user_fname;
     private String user_lname;
-    private String user_address;
+
+    public String getUser_dob() {
+        return user_dob;
+    }
+
+    public void setUser_dob(String user_dob) {
+        this.user_dob = user_dob;
+    }
+
+    private String user_dob;
     private String user_phone;
     private String user_email;
     private String user_password;
@@ -15,23 +24,23 @@ public class User {
 
     }
 
-    public User(int id, String fname, String lname, String address,
+    public User(int id, String fname, String lname, String dob,
                 String phone, String email, String pass){
         this.user_id = id;
         this.user_fname = fname;
         this.user_lname = lname;
-        this.user_address = address;
+        this.user_dob = dob;
         this.user_phone = phone;
         this.user_email = email;
         this.user_password = pass;
     }
 
-    public User(String fname, String lname, String address,
+    public User(String fname, String lname, String dob,
                 String phone, String email, String pass){
 
         this.user_fname = fname;
         this.user_lname = lname;
-        this.user_address = address;
+        this.user_dob = dob;
         this.user_phone = phone;
         this.user_email = email;
         this.user_password = pass;
@@ -49,9 +58,6 @@ public class User {
         return user_id;
     }
 
-    public String getUser_address() {
-        return user_address;
-    }
 
     public String getUser_fname() {
         return user_fname;
@@ -65,9 +71,6 @@ public class User {
         return user_phone;
     }
 
-    public void setUser_address(String user_address) {
-        this.user_address = user_address;
-    }
 
     public void setUser_email(String user_email) {
         this.user_email = user_email;

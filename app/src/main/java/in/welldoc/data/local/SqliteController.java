@@ -17,7 +17,7 @@ public class SqliteController {
         ContentValues values = new ContentValues();
         values.put(SqliteTable.COL_USER_FNAME, user.getUser_fname());
         values.put(SqliteTable.COL_USER_LNAME, user.getUser_lname());
-        values.put(SqliteTable.COL_USER_ADDRESS, user.getUser_address());
+        values.put(SqliteTable.COL_USER_DOB, user.getUser_dob());
         values.put(SqliteTable.COL_USER_PHONE, user.getUser_phone());
         values.put(SqliteTable.COL_USER_EMAIL, user.getUser_email());
         values.put(SqliteTable.COL_USER_PASSWORD, user.getUser_password());
@@ -28,7 +28,7 @@ public class SqliteController {
         ContentValues values = new ContentValues();
         values.put(SqliteTable.COL_USER_FNAME, user.getUser_fname());
         values.put(SqliteTable.COL_USER_LNAME, user.getUser_lname());
-        values.put(SqliteTable.COL_USER_ADDRESS, user.getUser_address());
+        values.put(SqliteTable.COL_USER_DOB, user.getUser_dob());
         values.put(SqliteTable.COL_USER_PHONE, user.getUser_phone());
         values.put(SqliteTable.COL_USER_EMAIL, user.getUser_email());
         values.put(SqliteTable.COL_USER_PASSWORD, user.getUser_password());
