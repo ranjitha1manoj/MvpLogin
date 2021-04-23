@@ -55,6 +55,7 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
     RadioButton rdFemale;
     RegisterContract.Presenter mPresenter;
     RegisterPresenter registerPresenter;
+    String gender="";
     @Override
     protected int getLayoutId() {
         return R.layout.activity_register;
@@ -94,6 +95,16 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
     }
     @OnClick({R.id.btn_continue, R.id.textLogin})
     public void buttonClicked(View v) {
+
+        /*if (rdMale.isChecked()) {
+            gender = rdMale.getText().toString();
+        } else if (rdFemale.isChecked()) {
+            gender = rdFemale.getText().toString();
+        }
+        else
+        {
+            Toast.makeText(getApplicationContext(), gender, Toast.LENGTH_LONG).show();
+        }*/
         switch (v.getId()) {
             case R.id.textLogin:
                 CommonUtils.startActivity(this,
