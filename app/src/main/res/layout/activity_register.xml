@@ -167,7 +167,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:onClick="RadioButtonClicked"
                 android:text="Male "
                 android:textSize="18sp"/>
 
@@ -177,7 +176,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Female"
-                android:onClick="RadioButtonClicked"
+
                 android:textSize="18sp"/>
             </RadioGroup>
             <!--<Button

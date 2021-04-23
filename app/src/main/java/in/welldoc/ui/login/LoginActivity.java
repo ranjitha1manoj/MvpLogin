@@ -33,7 +33,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
     @Override
     public void setView() {
         super.setView();
-      //  new UnderLineText(btn_register);
+
     }
     @OnClick({ R.id.loginBotton})
     public void submitClicked() {
