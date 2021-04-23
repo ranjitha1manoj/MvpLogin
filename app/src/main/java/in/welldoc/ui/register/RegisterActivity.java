@@ -36,7 +36,7 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
     @BindView(R.id.textInputEditTextlastName)
     TextInputEditText reg_last_name;
     @BindView(R.id.textInputEditTextDob)
-    TextInputEditText reg_dob;
+    TextInputEditText reg_address;
     @BindView(R.id.textInputEditTextMobile)
     TextInputEditText reg_phone_num;
     @BindView(R.id.textInputEditTextEmail)
@@ -47,17 +47,14 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
     TextView textLogin;
     @BindView(R.id.btn_continue)
     Button btn_continue;
-    RegisterContract.Presenter mPresenter;
-    RegisterPresenter registerPresenter;
+    @BindView(R.id.radioGroup)
+    RadioGroup radioGroup;
     @BindView(R.id.rdMale)
     RadioButton rdMale;
     @BindView(R.id.rdFeMale)
     RadioButton rdFemale;
-    @BindView(R.id.radioGroup)
-    RadioGroup radioGroup;
-
-    String gender="";
-
+    RegisterContract.Presenter mPresenter;
+    RegisterPresenter registerPresenter;
     @Override
     protected int getLayoutId() {
         return R.layout.activity_register;
@@ -86,7 +83,7 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
 
     @Override
     public void navigateTo() {
-       CommonUtils.startActivity(this, LoginActivity.class,
+        CommonUtils.startActivity(this, LoginActivity.class,
                 Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
     }
 
@@ -97,26 +94,16 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
     }
     @OnClick({R.id.btn_continue, R.id.textLogin})
     public void buttonClicked(View v) {
-        //boolean checked = ((RadioButton) v).isChecked();
         switch (v.getId()) {
-
             case R.id.textLogin:
                 CommonUtils.startActivity(this,
                         LoginActivity.class,
                         Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        break;
-            case R.id.btn_continue:
-                mPresenter.validateRegisterFields(new TextInputEditText[]{reg_first_name, reg_last_name, reg_dob, reg_phone_num,
-                        reg_email_address, reg_password});
-                       break;
-           /* case R.id.rdFeMale:
-                if (checked)
-                    gender= "female";
                 break;
-            case R.id.rdMale:
-                if (checked)
-                    gender = "male";
-                break;*/
+            case R.id.btn_continue:
+                mPresenter.validateRegisterFields(new TextInputEditText[]{reg_first_name, reg_last_name, reg_address, reg_phone_num,
+                        reg_email_address, reg_password});
+                break;
         }
     }
     @Override
@@ -126,9 +113,10 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
         try {
             mPresenter.start();
         }
-       catch (NullPointerException ee)
-       {
-           ee.printStackTrace();
-       }
+        catch (NullPointerException ee)
+        {
+            ee.printStackTrace();
+        }
     }
+
 }
