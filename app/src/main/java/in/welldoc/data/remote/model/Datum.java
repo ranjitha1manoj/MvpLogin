@@ -3,6 +3,7 @@ package in.welldoc.data.remote.model;
 import com.google.gson.annotations.SerializedName;
 
 public class Datum {
+
     @SerializedName("id")
     private Integer id;
     @SerializedName("name")
@@ -11,6 +12,17 @@ public class Datum {
     private String description;
     @SerializedName("status")
     private Boolean status;
+
+    public Datum(Integer id, String name, String description, Boolean status) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.status = status;
+    }
+    public Datum(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
 
     public Integer getId() {
         return id;

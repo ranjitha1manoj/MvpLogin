@@ -4,9 +4,9 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
-public class NoticeList {
+public class CategoryList {
 
-    @SerializedName("notice_list")
+    @SerializedName("data")
     private ArrayList<Datum> noticeList;
 
     public ArrayList<Datum> getNoticeArrayList() {

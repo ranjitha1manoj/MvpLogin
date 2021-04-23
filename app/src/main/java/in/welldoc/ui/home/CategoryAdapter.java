@@ -23,6 +23,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
         this.context = context;
         this.list = list;
     }
+    public CategoryAdapter()
+    {
+
+    }
     public CategoryAdapter(ArrayList<Datum> dataList , RecyclerItemClickListener recyclerItemClickListener) {
         this.list = dataList;
         this.recyclerItemClickListener = recyclerItemClickListener;

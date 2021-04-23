@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 import in.welldoc.data.remote.model.Datum;
 
-public class HomePresenterImpl implements HomeContract.presenter, HomeContract.GetNoticeIntractor.OnFinishedListener {
+public class HomePresenterImpl implements HomeContract.presenter, HomeContract.GetCategoryIntractor.OnFinishedListener {
 
     private HomeContract.MainView mainView;
-    private HomeContract.GetNoticeIntractor getNoticeIntractor;
+    private HomeContract.GetCategoryIntractor getNoticeIntractor;
 
-    public HomePresenterImpl(HomeContract.MainView mainView,HomeContract.GetNoticeIntractor getNoticeIntractor) {
+    public HomePresenterImpl(HomeContract.MainView mainView,HomeContract.GetCategoryIntractor getNoticeIntractor) {
         this.mainView = mainView;
         this.getNoticeIntractor = getNoticeIntractor;
     }
@@ -27,20 +27,20 @@ public class HomePresenterImpl implements HomeContract.presenter, HomeContract.G
         if (mainView != null) {
             mainView.showProgress();
         }
-        getNoticeIntractor.getNoticeArrayList(this);
+        getNoticeIntractor.getCategoryArrayList(this);
 
     }
 
     @Override
     public void requestDataFromServer() {
-        getNoticeIntractor.getNoticeArrayList(this);
+        getNoticeIntractor.getCategoryArrayList(this);
     }
 
 
     @Override
-    public void onFinished(ArrayList<Datum> noticeArrayList) {
+    public void onFinished(ArrayList<Datum> categoryArrayList) {
         if (mainView != null) {
-            mainView.setDataToRecyclerView(noticeArrayList);
+            mainView.setDataToRecyclerView(categoryArrayList);
             mainView.hideProgress();
         }
     }

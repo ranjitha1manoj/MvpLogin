@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import in.welldoc.data.remote.model.Datum;
 
 public interface HomeContract {
+
     interface presenter{
 
         void onDestroy();
@@ -22,21 +23,21 @@ public interface HomeContract {
 
         void hideProgress();
 
-        void setDataToRecyclerView(ArrayList<Datum> noticeArrayList);
+        void setDataToRecyclerView(ArrayList<Datum> categoryArrayList);
 
         void onResponseFailure(Throwable throwable);
 
     }
 
 
-    interface GetNoticeIntractor {
+    interface GetCategoryIntractor {
 
         interface OnFinishedListener {
-            void onFinished(ArrayList<Datum> noticeArrayList);
+            void onFinished(ArrayList<Datum> categoryArrayList);
             void onFailure(Throwable t);
         }
 
-        void getNoticeArrayList(OnFinishedListener onFinishedListener);
+        void getCategoryArrayList(OnFinishedListener onFinishedListener);
     }
 }
 
