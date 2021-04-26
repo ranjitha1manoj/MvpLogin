@@ -9,6 +9,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import butterknife.BindView;
 import butterknife.OnClick;
 import in.welldoc.R;
+import in.welldoc.ui.Main.MainActivity;
 import in.welldoc.ui.base.BaseActivity;
 import in.welldoc.ui.home.HomeActivity;
 import in.welldoc.utils.CommonUtils;
@@ -58,7 +59,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
     @Override
     public void navigateTo(String email) {
         CommonUtils.startActivity(this,
-                HomeActivity.class,
+              MainActivity.class,
                 Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP,
                 email);
         finish();

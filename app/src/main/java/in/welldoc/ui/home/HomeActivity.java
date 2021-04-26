@@ -6,7 +6,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import butterknife.BindView;
 
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -26,6 +30,11 @@ public class HomeActivity extends AppCompatActivity  implements HomeContract.Mai
         initialize();
         presenter = new HomePresenterImpl(this, new GetCategoryIntractorImpl());
         presenter.requestDataFromServer();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.WHITE);
+        }
     }
 
     private void initialize() {
