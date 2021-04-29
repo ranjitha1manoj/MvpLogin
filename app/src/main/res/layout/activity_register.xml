@@ -93,7 +93,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="number"
+                    android:inputType="date"
                     android:background="@color/colorGreyPrimary"
                     android:id="@+id/textInputEditTextDob"/>
             </com.google.android.material.textfield.TextInputLayout>
