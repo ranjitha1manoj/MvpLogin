@@ -66,6 +66,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
                     android:background="@color/colorGreyPrimary"
                     android:id="@+id/textInputEditTextfirstName"/>
             </com.google.android.material.textfield.TextInputLayout>
@@ -80,6 +81,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/colorGreyPrimary"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
                     android:id="@+id/textInputEditTextlastName"/>
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
@@ -91,7 +93,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="phone"
+                    android:inputType="number"
                     android:background="@color/colorGreyPrimary"
                     android:id="@+id/textInputEditTextDob"/>
             </com.google.android.material.textfield.TextInputLayout>
@@ -107,7 +109,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="phone"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1"
                     android:background="@color/colorGreyPrimary"
                     android:id="@+id/textInputEditTextMobile"/>
             </com.google.android.material.textfield.TextInputLayout>
@@ -121,6 +125,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/colorGreyPrimary"
+                    android:inputType="textEmailAddress"
                     android:id="@+id/textInputEditTextEmail"/>
             </com.google.android.material.textfield.TextInputLayout>
 

@@ -23,6 +23,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import butterknife.BindView;
 import butterknife.OnClick;
 import in.welldoc.R;
+import in.welldoc.data.local.User;
 import in.welldoc.ui.base.BaseActivity;
 import in.welldoc.ui.home.HomeActivity;
 import in.welldoc.ui.login.LoginActivity;
@@ -33,16 +34,23 @@ import static androidx.core.util.Preconditions.checkNotNull;
 public class RegisterActivity extends BaseActivity implements RegisterContract.View {
     @BindView(R.id.textInputEditTextfirstName)
     TextInputEditText reg_first_name;
+
     @BindView(R.id.textInputEditTextlastName)
     TextInputEditText reg_last_name;
+
     @BindView(R.id.textInputEditTextDob)
-    TextInputEditText reg_address;
+    TextInputEditText reg_dob;
+
     @BindView(R.id.textInputEditTextMobile)
     TextInputEditText reg_phone_num;
+
     @BindView(R.id.textInputEditTextEmail)
     TextInputEditText reg_email_address;
+
     @BindView(R.id.textInputEditTextPassword)
     TextInputEditText reg_password;
+    @BindView(R.id.textInputEditTextconfirmPassword)
+    TextInputEditText reg_confirm_password;
     @BindView(R.id.textLogin)
     TextView textLogin;
     @BindView(R.id.btn_continue)
@@ -112,11 +120,45 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
                         Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 break;
             case R.id.btn_continue:
-                mPresenter.validateRegisterFields(new TextInputEditText[]{reg_first_name, reg_last_name, reg_address, reg_phone_num,
+                mPresenter.validateRegisterFields(new TextInputEditText[]{reg_first_name, reg_last_name, reg_dob, reg_phone_num,
                         reg_email_address, reg_password});
+               //createAccount();
                 break;
         }
     }
+
+    private void createAccount() {
+            boolean isValidFirstNameNames = CommonUtils.validateNames(reg_first_name);
+            boolean isValidlastName = CommonUtils.validateNames(reg_last_name);
+            boolean isValidPhone =  CommonUtils.isValidPhoneNumber(reg_phone_num);
+            boolean isValidEmail = CommonUtils.isValidEmail(reg_email_address);
+            boolean isPasswordValid = CommonUtils.validatePassword(reg_password);
+            boolean doesPasswordMatch = CommonUtils.doesPasswordMatch(reg_password, reg_confirm_password);
+          /*  if (isValidEmail && isPasswordValid && isValidPhone && isValidFirstNameNames && isValidlastName && doesPasswordMatch) {
+                User user = new User(reg_first_name.getText().toString(), reg_last_name.getText().toString(), reg_dob.getText().toString(),
+                        reg_phone_num.getText().toString(), reg_email_address.getText().toString(), reg_password.getText().toString());
+            }*/
+                 if (!isValidFirstNameNames) {
+                   reg_first_name.requestFocus();
+                } else if (!isValidlastName) {
+                    reg_last_name.requestFocus();
+                } else if (!isValidPhone) {
+                    reg_phone_num.requestFocus();
+                } else if (!isValidEmail) {
+                    reg_email_address.requestFocus();
+                } else if (!isPasswordValid) {
+                    reg_password.requestFocus();
+                } else if (!doesPasswordMatch) {
+                    reg_confirm_password.requestFocus();
+                }
+                else
+                {
+
+                }
+            }
+
+
+
     @Override
     protected void onResume() {
         super.onResume();

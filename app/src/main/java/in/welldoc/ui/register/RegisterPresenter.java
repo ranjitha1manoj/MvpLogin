@@ -35,9 +35,13 @@ public class RegisterPresenter implements RegisterContract.Presenter{
                 return false;
             }
         }
-
         validated(fields);
         return true;
+    }
+
+    @Override
+    public boolean createAccount() {
+        return false;
     }
 
     private void validated(EditText[] fields){

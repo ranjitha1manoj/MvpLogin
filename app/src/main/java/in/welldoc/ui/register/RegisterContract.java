@@ -18,6 +18,7 @@ public interface RegisterContract {
 
     interface Presenter extends BasePresenter {
         boolean validateRegisterFields(EditText[] fields);
+        boolean createAccount();
     }
 
 }

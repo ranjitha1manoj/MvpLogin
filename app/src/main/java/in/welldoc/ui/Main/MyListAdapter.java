@@ -47,10 +47,10 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
         final int min = 20;
         final int max = 80;
         final int random = new Random().nextInt(max-min+1)+min;
-        String time = new SimpleDateFormat("hh : mm a", Locale.getDefault()).format(Calendar.getInstance().getTime());
         holder.name.setText(String.valueOf(random));
-        holder.description.setText(myListData.getDescription());
+        String time = new SimpleDateFormat("hh : mm a", Locale.getDefault()).format(Calendar.getInstance().getTime());
         holder.time1.setText(time);
+        holder.description.setText(myListData.getDescription());
         holder.imageView.setImageResource(myListData.getImgId());
 
     }
